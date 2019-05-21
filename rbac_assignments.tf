@@ -16,29 +16,28 @@ data "azuread_group" "virtual_machine_admins" {
   name = "Virtual Machine Admins"
 }
 
-resource "azurerm_role_assignment" "network_admins" {
+resource "azurerm_role_assignment" "prod_network_admins" {
   principal_id         = data.azuread_group.network_admins.id
   role_definition_name = "Network Contributor"
   scope                = azurerm_management_group.prod.id
 }
 
-resource "azurerm_role_assignment" "virtual_machine_admins" {
+resource "azurerm_role_assignment" "prod_virtual_machine_admins" {
   principal_id         = data.azuread_group.virtual_machine_admins.id
   role_definition_name = "Virtual Machine Contributor"
   scope                = azurerm_management_group.prod.id
 }
 
-// Reuse the same AD groups for both prod and non-prod.  Allow for future split
+// Reuse the same AD groups for both prod and non-prod.  Allows for future split.
 
-resource "azurerm_role_assignment" "network_admins" {
+resource "azurerm_role_assignment" "non-prod_network_admins" {
   principal_id         = data.azuread_group.network_admins.id
   role_definition_name = "Network Contributor"
   scope                = azurerm_management_group.non-prod.id
 }
 
-resource "azurerm_role_assignment" "virtual_machine_admins" {
+resource "azurerm_role_assignment" "non-prod_virtual_machine_admins" {
   principal_id         = data.azuread_group.virtual_machine_admins.id
   role_definition_name = "Virtual Machine Contributor"
   scope                = azurerm_management_group.non-prod.id
 }
-
