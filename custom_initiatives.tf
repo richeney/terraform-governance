@@ -6,13 +6,12 @@ locals {
   // tenantRootGroupCustomPolicy = "/providers/Microsoft.Management/managementgroups/${var.tenantId}/providers/Microsoft.Authorization/policyDefinitions"
 }
 
-
 resource "azurerm_policy_set_definition" "deny" {
   name         = "Deny"
   policy_type  = "Custom"
   display_name = "Standard Deny Policy Initiative"
 
-  management_group_id = "${var.tenantId}"
+  management_group_id = var.tenantId
 
   parameters = <<PARAMETERS
     {
@@ -39,6 +38,7 @@ resource "azurerm_policy_set_definition" "deny" {
         }
     }
 PARAMETERS
+
 
   policy_definitions = <<POLICY_DEFINITIONS
     [
@@ -70,16 +70,17 @@ PARAMETERS
         }
     ]
 POLICY_DEFINITIONS
+
 }
 
 resource "azurerm_policy_set_definition" "tagging" {
-  name         = "Tagging"
-  policy_type  = "Custom"
-  display_name = "Standard Tagging Policy Initiative"
+name         = "Tagging"
+policy_type  = "Custom"
+display_name = "Standard Tagging Policy Initiative"
 
-  management_group_id = "${var.tenantId}"
+management_group_id = var.tenantId
 
-  parameters = <<PARAMETERS
+parameters = <<PARAMETERS
     {
         "Environment": {
             "type": "string",
@@ -98,7 +99,8 @@ resource "azurerm_policy_set_definition" "tagging" {
     }
 PARAMETERS
 
-  policy_definitions = <<POLICY_DEFINITIONS
+
+policy_definitions = <<POLICY_DEFINITIONS
     [
         {
             "comment": "Create Owner tag if it does not exist",
@@ -243,4 +245,6 @@ PARAMETERS
         }
     ]
 POLICY_DEFINITIONS
+
 }
+

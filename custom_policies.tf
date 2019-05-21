@@ -1,6 +1,6 @@
 variable "tenantId" {
-    type        = "string"
-    description = "The tenantId, i.e. the tenant GUID (`az account show`)"
+  type        = string
+  description = "The tenantId, i.e. the tenant GUID (`az account show`)"
 }
 
 resource "azurerm_policy_definition" "auditemptytagvalue" {
@@ -10,7 +10,7 @@ resource "azurerm_policy_definition" "auditemptytagvalue" {
   policy_type  = "Custom"
   mode         = "Indexed"
 
-  management_group_id = "${var.tenantId}"
+  management_group_id = var.tenantId
 
   parameters = <<PARAMETERS
     {
@@ -23,6 +23,7 @@ resource "azurerm_policy_definition" "auditemptytagvalue" {
         }
     }
 PARAMETERS
+
 
   policy_rule = <<POLICY_RULE
     {
@@ -43,18 +44,19 @@ PARAMETERS
         }
     }
 POLICY_RULE
+
 }
 
 resource "azurerm_policy_definition" "audittagvaluefromlist" {
-  name         = "auditTagValueFromList"
-  display_name = "Audit tag exists and has a value from the allowedList"
-  description  = "This policy audits that a tag exists and has a value from the specified list."
-  policy_type  = "Custom"
-  mode         = "Indexed"
+name         = "auditTagValueFromList"
+display_name = "Audit tag exists and has a value from the allowedList"
+description  = "This policy audits that a tag exists and has a value from the specified list."
+policy_type  = "Custom"
+mode         = "Indexed"
 
-  management_group_id = "${var.tenantId}"
+management_group_id = var.tenantId
 
-  parameters = <<PARAMETERS
+parameters = <<PARAMETERS
     {
         "tagName": {
             "metadata": {
@@ -73,7 +75,8 @@ resource "azurerm_policy_definition" "audittagvaluefromlist" {
     }
 PARAMETERS
 
-  policy_rule = <<POLICY_RULE
+
+policy_rule = <<POLICY_RULE
     {
         "if": {
             "anyOf": [
@@ -92,6 +95,7 @@ PARAMETERS
         }
     }
 POLICY_RULE
+
 }
 
 resource "azurerm_policy_definition" "audittagvaluepattern" {
@@ -101,7 +105,7 @@ resource "azurerm_policy_definition" "audittagvaluepattern" {
   policy_type  = "Custom"
   mode         = "Indexed"
 
-  management_group_id = "${var.tenantId}"
+  management_group_id = var.tenantId
 
   parameters = <<PARAMETERS
     {
@@ -122,6 +126,7 @@ resource "azurerm_policy_definition" "audittagvaluepattern" {
     }
 PARAMETERS
 
+
   policy_rule = <<POLICY_RULE
     {
         "if": {
@@ -135,4 +140,6 @@ PARAMETERS
         }
     }
 POLICY_RULE
+
 }
+
