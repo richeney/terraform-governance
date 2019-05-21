@@ -73,8 +73,8 @@ POLICY_DEFINITIONS
 
 }
 
-resource "azurerm_policy_set_definition" "tagging" {
-name         = "Tagging"
+resource "azurerm_policy_set_definition" "tags" {
+name         = "Tags"
 policy_type  = "Custom"
 display_name = "Standard Tagging Policy Initiative"
 
@@ -247,4 +247,3 @@ policy_definitions = <<POLICY_DEFINITIONS
 POLICY_DEFINITIONS
 
 }
-
