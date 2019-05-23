@@ -20,20 +20,20 @@ resource "azurerm_management_group" "dev" {
   ]
 }
 
-resource "azurerm_management_group" "test" {
-  display_name               = "Test"
-  parent_management_group_id = "${azurerm_management_group.non-prod.id}"
-
-  subscription_ids = [
-    // "${data.azurerm_subscription.current.subscription_id}"
-  ]
-}
-
 resource "azurerm_management_group" "uat" {
   display_name               = "UAT"
   parent_management_group_id = "${azurerm_management_group.non-prod.id}"
 
   subscription_ids = [
     // "ac13214c-b929-4677-9e90-279966b93b54"
+  ]
+}
+
+resource "azurerm_management_group" "test" {
+  display_name               = "Test"
+  parent_management_group_id = "${azurerm_management_group.non-prod.id}"
+
+  subscription_ids = [
+    // "${data.azurerm_subscription.current.subscription_id}"
   ]
 }
