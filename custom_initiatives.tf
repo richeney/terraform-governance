@@ -12,7 +12,7 @@ resource "azurerm_policy_set_definition" "deny" {
   display_name = "Standard Deny Policy Initiative"
   description  = "Limit the permitted regions and virtual machine SKUs"
 
-  management_group_id = var.tenantId    // Tenant Root Group
+  management_group_id = "${var.tenantId}"    // Tenant Root Group
 
   parameters = <<PARAMETERS
     {
@@ -79,7 +79,7 @@ name         = "Tags"
 policy_type  = "Custom"
 display_name = "Standard Tagging Policy Initiative"
 
-management_group_id = var.tenantId
+management_group_id = "${var.tenantId}"
 
 parameters = <<PARAMETERS
     {
