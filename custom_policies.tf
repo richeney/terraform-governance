@@ -1,8 +1,3 @@
-variable "tenantId" {
-  type        = string
-  description = "The tenantId, i.e. the tenant GUID (`az account show`)"
-}
-
 resource "azurerm_policy_definition" "auditemptytagvalue" {
   name         = "auditEmptyTagValue"
   display_name = "Audit tag exists and has a value"
@@ -24,7 +19,6 @@ resource "azurerm_policy_definition" "auditemptytagvalue" {
     }
 PARAMETERS
 
-
   policy_rule = <<POLICY_RULE
     {
         "if": {
@@ -44,7 +38,6 @@ PARAMETERS
         }
     }
 POLICY_RULE
-
 }
 
 resource "azurerm_policy_definition" "audittagvaluefromlist" {
@@ -75,7 +68,6 @@ parameters = <<PARAMETERS
     }
 PARAMETERS
 
-
 policy_rule = <<POLICY_RULE
     {
         "if": {
@@ -95,7 +87,6 @@ policy_rule = <<POLICY_RULE
         }
     }
 POLICY_RULE
-
 }
 
 resource "azurerm_policy_definition" "audittagvaluepattern" {
@@ -126,7 +117,6 @@ resource "azurerm_policy_definition" "audittagvaluepattern" {
     }
 PARAMETERS
 
-
   policy_rule = <<POLICY_RULE
     {
         "if": {
@@ -140,6 +130,4 @@ PARAMETERS
         }
     }
 POLICY_RULE
-
 }
-

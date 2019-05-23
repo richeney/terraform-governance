@@ -10,13 +10,14 @@ resource "azurerm_policy_set_definition" "deny" {
   name         = "Deny"
   policy_type  = "Custom"
   display_name = "Standard Deny Policy Initiative"
+  description  = "Limit the permitted regions and virtual machine SKUs"
 
-  management_group_id = var.tenantId
+  management_group_id = var.tenantId    // Tenant Root Group
 
   parameters = <<PARAMETERS
     {
         "regions": {
-            "type": "array",
+            "type": "Array",
             "metadata": {
                 "displayName": "List of regions",
                 "description": "List of permitted region. Only permitted pairs as West / North Europe or UK South / West."
@@ -83,7 +84,7 @@ management_group_id = var.tenantId
 parameters = <<PARAMETERS
     {
         "Environment": {
-            "type": "string",
+            "type": "String",
             "metadata": {
                 "description": "Environment, from permitted list",
                 "displayName": "Environment"
