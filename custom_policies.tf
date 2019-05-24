@@ -5,7 +5,7 @@ resource "azurerm_policy_definition" "auditemptytagvalue" {
   policy_type  = "Custom"
   mode         = "Indexed"
 
-  management_group_id = "${var.tenantId}"
+  management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
   parameters = <<PARAMETERS
     {
@@ -47,7 +47,7 @@ description  = "This policy audits that a tag exists and has a value from the sp
 policy_type  = "Custom"
 mode         = "Indexed"
 
-management_group_id = "${var.tenantId}"
+management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
 parameters = <<PARAMETERS
     {
@@ -96,7 +96,7 @@ resource "azurerm_policy_definition" "audittagvaluepattern" {
   policy_type  = "Custom"
   mode         = "Indexed"
 
-  management_group_id = "${var.tenantId}"
+  management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
   parameters = <<PARAMETERS
     {
