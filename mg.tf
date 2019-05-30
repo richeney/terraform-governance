@@ -1,6 +1,8 @@
 data "azurerm_subscription" "current" {
 }
 
+data "azurerm_client_config" "current" {}
+
 resource "azurerm_management_group" "prod" {
   display_name = "Prod"
 
@@ -25,7 +27,7 @@ resource "azurerm_management_group" "uat" {
   parent_management_group_id = "${azurerm_management_group.non-prod.id}"
 
   subscription_ids = [
-    // "ac13214c-b929-4677-9e90-279966b93b54"
+    "ac13214c-b929-4677-9e90-279966b93b54"
   ]
 }
 
