@@ -18,7 +18,7 @@ resource "azurerm_management_group" "dev" {
   parent_management_group_id = "${azurerm_management_group.non-prod.id}"
 
   subscription_ids = [
-    "2d31be49-d959-4415-bb65-8aec2c90ba62"
+    // "2d31be49-d959-4415-bb65-8aec2c90ba62"
   ]
 }
 
@@ -27,7 +27,7 @@ resource "azurerm_management_group" "uat" {
   parent_management_group_id = "${azurerm_management_group.non-prod.id}"
 
   subscription_ids = [
-    "ac13214c-b929-4677-9e90-279966b93b54"
+    // "ac13214c-b929-4677-9e90-279966b93b54"
   ]
 }
 

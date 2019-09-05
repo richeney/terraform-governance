@@ -8,7 +8,7 @@ resource "azurerm_policy_assignment" "deny" {
   parameters = <<PARAMETERS
 {
   "regions": {
-    "value": [ "West Europe", "North Europe" ]
+    "value": [ "UK South", "UK West" ]
   }
 }
 PARAMETERS
