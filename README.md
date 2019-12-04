@@ -195,7 +195,7 @@ Once the credentials have the correct authority then testing or demoing is a mat
 
 The azurem_management_group resource type supports arrays of subscription IDs, but there is an [open Terraform bug](https://github.com/terraform-providers/terraform-provider-azurerm/issues/3450) as `terraform destroy` will generate an error. The subscriptions may be moved under management groups in the portal.
 
-Alternatively, the mg.tf can be updated to automatically place subscription. (Example GUIDS or first class expressions are shown in comments.) If using `terraform destroy` then first move the subscriptions back up to the Root Tenant Group (using the portal or CLI commands) and then comment out the
+Alternatively, the mg.tf can be updated to automatically place subscription. (Example GUIDS or first class expressions are shown in comments.) Before using `terraform destroy` then first move the subscriptions back up to the Root Tenant Group (using the portal), comment out the subscription(s) in the mg.tf file and then run `terraform refresh`. The `terraform destroy` will then work successfully.
 
 ## Planned
 
