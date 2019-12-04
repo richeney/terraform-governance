@@ -1,5 +1,6 @@
 /*
-$ az ad group list --output table --query "[?securityEnabled].{name:displayName, description:description, objectId:objectId}"                                                                                                                         Name                    Description                                      ObjectId
+$ az ad group list --output table --query "[?securityEnabled].{name:displayName, description:description, objectId:objectId}"
+Name                    Description                                      ObjectId
 ----------------------  -----------------------------------------------  ------------------------------------
 Databricks Admins       Enable Databricks workspace via portal as admin  3ba57833-991b-40a8-8ce8-825a34164ebf
 RBAC Admins             Allowed to create and assign roles               3defc448-c5f8-4dd0-addd-c94ea52341d3
