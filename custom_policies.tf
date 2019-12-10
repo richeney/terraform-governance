@@ -1,13 +1,13 @@
 resource "azurerm_policy_definition" "auditemptytagvalue" {
-  name         = "auditEmptyTagValue"
-  display_name = "Audit tag exists and has a value"
-  description  = "This policy audits that a tag exists and has a non-empty value."
-  policy_type  = "Custom"
-  mode         = "Indexed"
+    name         = "auditEmptyTagValue"
+    display_name = "Audit tag exists and has a value"
+    description  = "This policy audits that a tag exists and has a non-empty value."
+    policy_type  = "Custom"
+    mode         = "Indexed"
 
-  management_group_id = "${data.azurerm_client_config.current.tenant_id}"
+    management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
-  parameters = <<PARAMETERS
+    parameters = <<PARAMETERS
     {
         "tagName": {
             "type": "String",
@@ -19,7 +19,7 @@ resource "azurerm_policy_definition" "auditemptytagvalue" {
     }
 PARAMETERS
 
-  policy_rule = <<POLICY_RULE
+    policy_rule = <<POLICY_RULE
     {
         "if": {
             "anyOf": [
@@ -41,15 +41,15 @@ POLICY_RULE
 }
 
 resource "azurerm_policy_definition" "audittagvaluefromlist" {
-name         = "auditTagValueFromList"
-display_name = "Audit tag exists and has a value from the allowedList"
-description  = "This policy audits that a tag exists and has a value from the specified list."
-policy_type  = "Custom"
-mode         = "Indexed"
+    name         = "auditTagValueFromList"
+    display_name = "Audit tag exists and has a value from the allowedList"
+    description  = "This policy audits that a tag exists and has a value from the specified list."
+    policy_type  = "Custom"
+    mode         = "Indexed"
 
-management_group_id = "${data.azurerm_client_config.current.tenant_id}"
+    management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
-parameters = <<PARAMETERS
+    parameters = <<PARAMETERS
     {
         "tagName": {
             "metadata": {
@@ -68,7 +68,7 @@ parameters = <<PARAMETERS
     }
 PARAMETERS
 
-policy_rule = <<POLICY_RULE
+    policy_rule = <<POLICY_RULE
     {
         "if": {
             "anyOf": [
@@ -90,15 +90,15 @@ POLICY_RULE
 }
 
 resource "azurerm_policy_definition" "audittagvaluepattern" {
-  name         = "auditTagValuePattern"
-  display_name = "Audit tag exists and that the value matches the pattern"
-  description  = "This policy audits that a tag exists and has a value that matches the specified pattern."
-  policy_type  = "Custom"
-  mode         = "Indexed"
+    name         = "auditTagValuePattern"
+    display_name = "Audit tag exists and that the value matches the pattern"
+    description  = "This policy audits that a tag exists and has a value that matches the specified pattern."
+    policy_type  = "Custom"
+    mode         = "Indexed"
 
-  management_group_id = "${data.azurerm_client_config.current.tenant_id}"
+    management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
-  parameters = <<PARAMETERS
+    parameters = <<PARAMETERS
     {
         "tagName": {
             "type": "String",
@@ -117,7 +117,7 @@ resource "azurerm_policy_definition" "audittagvaluepattern" {
     }
 PARAMETERS
 
-  policy_rule = <<POLICY_RULE
+    policy_rule = <<POLICY_RULE
     {
         "if": {
             "not": {

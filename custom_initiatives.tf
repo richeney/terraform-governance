@@ -7,14 +7,20 @@ locals {
 }
 
 resource "azurerm_policy_set_definition" "deny" {
-  name         = "Deny"
-  policy_type  = "Custom"
-  display_name = "Standard Deny Policy Initiative"
-  description  = "Limit the permitted regions and virtual machine SKUs"
+    name         = "Deny"
+    policy_type  = "Custom"
+    display_name = "Standard Deny Policy Initiative"
+    description  = "Limit the permitted regions and virtual machine SKUs"
 
-  management_group_id = "${data.azurerm_client_config.current.tenant_id}"
+    management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
-  parameters = <<PARAMETERS
+    lifecycle {
+        ignore_changes = [
+            metadata
+        ]
+    }
+
+    parameters = <<PARAMETERS
     {
         "regions": {
             "type": "Array",
@@ -41,7 +47,7 @@ resource "azurerm_policy_set_definition" "deny" {
 PARAMETERS
 
 
-  policy_definitions = <<POLICY_DEFINITIONS
+    policy_definitions = <<POLICY_DEFINITIONS
     [
         {
             "comment": "Permitted regions",
@@ -75,13 +81,19 @@ POLICY_DEFINITIONS
 }
 
 resource "azurerm_policy_set_definition" "tags" {
-name         = "Tags"
-policy_type  = "Custom"
-display_name = "Standard Tagging Policy Initiative"
+    name         = "Tags"
+    policy_type  = "Custom"
+    display_name = "Standard Tagging Policy Initiative"
 
-management_group_id = "${data.azurerm_client_config.current.tenant_id}"
+    management_group_id = "${data.azurerm_client_config.current.tenant_id}"
 
-parameters = <<PARAMETERS
+    lifecycle {
+        ignore_changes = [
+            metadata
+        ]
+    }
+
+    parameters = <<PARAMETERS
     {
         "Environment": {
             "type": "String",
@@ -101,7 +113,7 @@ parameters = <<PARAMETERS
 PARAMETERS
 
 
-policy_definitions = <<POLICY_DEFINITIONS
+    policy_definitions = <<POLICY_DEFINITIONS
     [
         {
             "comment": "Create Owner tag if it does not exist",
@@ -246,5 +258,4 @@ policy_definitions = <<POLICY_DEFINITIONS
         }
     ]
 POLICY_DEFINITIONS
-
 }
