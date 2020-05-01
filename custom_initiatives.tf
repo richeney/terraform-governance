@@ -14,11 +14,13 @@ resource "azurerm_policy_set_definition" "deny" {
 
   management_group_id = data.azurerm_client_config.current.tenant_id
 
+  /*
   lifecycle {
     ignore_changes = [
       metadata
     ]
   }
+  */
 
   parameters = <<PARAMETERS
     {
@@ -85,13 +87,21 @@ resource "azurerm_policy_set_definition" "tags" {
   policy_type  = "Custom"
   display_name = "Standard Tagging Policy Initiative"
 
+  metadata     = <<METADATA
+    {
+        "category": "Tags"
+    }
+METADATA
+
   management_group_id = data.azurerm_client_config.current.tenant_id
 
+  /*
   lifecycle {
     ignore_changes = [
       metadata
     ]
   }
+  */
 
   parameters = <<PARAMETERS
     {
