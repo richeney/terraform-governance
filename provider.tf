@@ -7,5 +7,6 @@ provider "azuread" {
 }
 
 provider "azurerm" {
-  version = "~> 1.29.0"
+  version = "~> 2.7.0"
+  features {}
 }
