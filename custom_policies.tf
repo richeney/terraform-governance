@@ -7,6 +7,12 @@ resource "azurerm_policy_definition" "auditemptytagvalue" {
 
   management_group_name = data.azurerm_client_config.current.tenant_id
 
+  metadata     = <<METADATA
+    {
+        "category": "Tags"
+    }
+METADATA
+
   parameters = <<PARAMETERS
     {
         "tagName": {
@@ -48,6 +54,12 @@ resource "azurerm_policy_definition" "audittagvaluefromlist" {
   mode         = "Indexed"
 
   management_group_name = data.azurerm_client_config.current.tenant_id
+
+  metadata     = <<METADATA
+    {
+        "category": "Tags"
+    }
+METADATA
 
   parameters = <<PARAMETERS
     {
@@ -97,6 +109,12 @@ resource "azurerm_policy_definition" "audittagvaluepattern" {
   mode         = "Indexed"
 
   management_group_name = data.azurerm_client_config.current.tenant_id
+
+  metadata     = <<METADATA
+    {
+        "category": "Tags"
+    }
+METADATA
 
   parameters = <<PARAMETERS
     {
