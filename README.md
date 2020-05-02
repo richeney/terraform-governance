@@ -139,6 +139,7 @@ The following steps are based on the management group [documentation](https://do
     ```bash
     appId=$(az ad sp show --id "http://governance" --query appId --output tsv)
     az ad app update --id $appId --required-resource-accesses @read.aad.json
+    az ad app permission admin-consent --id $appId
     ```
 
     The API permissions can be seen at the [App Registration](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps) level. Find the http://Governance app ID and view both API Permissions and the Manifest.
